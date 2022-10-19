@@ -1,21 +1,36 @@
 import React from 'react'
 import { OrderItem } from '../components/OrderItem'
 import '../styles/MyOrder.scss'
+import flechita from '@icons/flechita.svg';
+import { AppContext } from '@context/AppContext';
 
-export const MyOrder = () => {
+const MyOrder = () => {
+
+  const { state } = React.useContext(AppContext);
+
+  const totalPrice = state.cart.reduce((prevVal, currentVal) => {
+    return (prevVal + currentVal.price);
+  }, 0);
+
+  console.log(totalPrice);
+
   return (
     <aside className="MyOrder">
       <div className="title-container">
-        <img src="./icons/flechita.svg" alt="arrow" />
+        <img src={flechita} alt="arrow" />
         <p className="title">My order</p>
       </div>
       <div className="my-order-content">
-        <OrderItem />
+        {
+          state.cart.map((item, index) => (
+            <OrderItem product={item} key={index} indexValue={index} />
+          ))
+        }
         <div className="order">
           <p>
             <span>Total</span>
           </p>
-          <p>$560.00</p>
+          <p>{totalPrice}</p>
         </div>
         <button className="primary-button">
           Checkout

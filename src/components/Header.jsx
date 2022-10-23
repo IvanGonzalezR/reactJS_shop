@@ -11,10 +11,11 @@ function Header() {
 
   const [ toggle, setToggle ] = React.useState(false);
   const [ toggleOrders, setToggleOrders ] = React.useState(false);
-  const { state } = React.useContext(AppContext);
+  const { state, handleToggleCart } = React.useContext(AppContext);
 
   const handleToggle = () => {
     setToggle(!toggle);
+    handleToggleCart();
   };
 
   return (
@@ -49,14 +50,14 @@ function Header() {
             platzi@example.com
           </li>
           <li className="navbar-shopping-cart"
-            onClick={() => setToggleOrders(!toggleOrders)}>
+            onClick={() => handleToggleCart()}>
             <img src={shoping_icon} alt="shopping cart" />
             {state.cart.length > 0 ? <div>{state.cart.length}</div> : null}
           </li>
         </ul>
       </div>
       {toggle && <Menu />}
-      {toggleOrders && <MyOrder />}
+      {state.toggleCart && <MyOrder />}
     </nav>
   );
 }

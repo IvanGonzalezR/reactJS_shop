@@ -2,6 +2,7 @@ import React from "react";
 
 const initialState = {
   cart: [],
+  toggleCart: false,
 };
 
 const useInitialState = () => {
@@ -21,10 +22,18 @@ const useInitialState = () => {
     });
   }
 
+  const handleToggleCart = () => {
+    setState({
+      ...state,
+      toggleCart: !state.toggleCart,
+    });
+  }
+
   return {
     state,
     addToCart,
-    removeFromCart
+    removeFromCart,
+    handleToggleCart
   }
 }
 

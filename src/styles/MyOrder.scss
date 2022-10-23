@@ -12,6 +12,10 @@
 	border-radius: 6px;
 	border: 1px solid var(--very-light-pink)
 }
+.MyOrder-items {
+	max-height: 50vh;
+	overflow-y: auto;
+}
 .title-container {
 	display: flex;
 }
@@ -45,7 +49,11 @@
 	text-align: end;
 	font-weight: bold;
 }
-
+.arrow {
+	&:hover {
+		cursor: pointer;
+	}
+}
 .primary-button {
 	background-color: var(--hospital-green);
 	border-radius: 8px;
